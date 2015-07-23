@@ -26,3 +26,35 @@
 *.exe
 *.out
 *.app
+
+# Generated PDF
+/book.pdf
+
+.hg/
+*~
+
+# latex temp files
+*.bak
+*.tmp
+*.swp
+*.swt
+~$*
+*.lst
+*.aux
+*.log
+*.dvi
+ctextemp_*
+*.toc
+*.tmp
+_temp.*
+*.bbl
+*.blg
+*.idx
+*.ind
+*.ilg
+*.glo
+*.gls
+*.lof
+*.lot
+*.out
+*.synctex.gz
