@@ -58,3 +58,6 @@ _temp.*
 *.lot
 *.out
 *.synctex.gz
+
+# output dir
+/out
