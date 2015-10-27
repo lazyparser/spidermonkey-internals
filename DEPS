@@ -3,3 +3,4 @@ pandoc
 # for xetex
 texlive-xetex
 texlive-lang-cjk
+texlive
