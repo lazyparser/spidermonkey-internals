@@ -24,14 +24,14 @@ $ cat config/milestone.txt
 	44.0a1
 
 之后, 在 SpiderMonkey 的 `configure` 脚本中, `configure` 脚本调用 `$srcdir/python/mozbuild/mozbuild/milestone.py` 读取 `milestone.txt` 并返回版本(子)字符串.
-在脚本配置过程中使用到了 `MOZILLA_VERSION` `MOZILLA_UAVERSION` `MOZILLA_SYMBOLVERSION` 三种版本形式:
+在脚本配置过程中使用到了 `MOZILLA_VERSION`、`MOZILLA_UAVERSION`、`MOZILLA_SYMBOLVERSION` 三种版本形式:
 ```bash
 MOZILLA_VERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir`
 MOZILLA_UAVERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir --uaversion`
 MOZILLA_SYMBOLVERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir --symbolversion`
 ```
-其中 `MOZILLA_VERSION` 又进一步的被分成 `MOZJS_MAJOR_VERSION` `MOZJS_MINOR_VERSION` `MOZJS_PATCH_VERSION IS_ALPHA` 四个变量:
-```
+其中 `MOZILLA_VERSION` 又进一步的被分成 `MOZJS_MAJOR_VERSION`、`MOZJS_MINOR_VERSION`、`MOZJS_PATCH_VERSION`、`IS_ALPHA` 四个变量:
+```bash
 MOZJS_MAJOR_VERSION=`echo $MOZILLA_VERSION | sed "s|\(^[0-9]*\)\.[0-9]*.*|\1|"`
 MOZJS_MINOR_VERSION=`echo $MOZILLA_VERSION | sed "s|^[0-9]*\.\([0-9]*\).*|\1|"`
 MOZJS_PATCH_VERSION=`echo $MOZILLA_VERSION | sed "s|^[0-9]*\.[0-9]*[^0-9]*||"`
@@ -39,8 +39,8 @@ IS_ALPHA=`echo $MOZILLA_VERSION | grep '[ab]'`
 ```
 在本例中分别对应 `44`, `0`, `1`, `a`.
 
-`configure` 获取到相关的信息之后, 将其写入到 `js-config.h` 以及 `js-confdefs.h` 两个文件中, 使得 JSShell 能够获得版本信息. 同时, configure 也将该信息写入 Makefile 文件, 用于在 make source-package 命令式, 将版本号正确的传递给 make-source-package.sh 脚本.
-make-source-package.sh 脚本可以简单的理解为一个打包脚本, 将 SpiderMonkey 在 mozilla-central 仓库中所有依赖的文件都抽取出来, 用于单独发布.
+`configure` 获取到相关的信息之后, 将其写入到 `js-config.h` 以及 `js-confdefs.h` 两个文件中, 使得 JSShell 能够获得版本信息. 同时, `configure` 也将该信息写入 `Makefile` 文件, 用于在 `make source-package` 命令式, 将版本号正确的传递给 `make-source-package.sh` 脚本.
+`make-source-package.sh` 脚本可以简单的理解为一个打包脚本, 将 SpiderMonkey 在 mozilla-central 仓库中所有依赖的文件都抽取出来, 用于单独发布.
 
 ## 如何打包 SpiderMonkey 代码, 从 Mozilla 仓库中抽取出来.
 
