@@ -42,4 +42,38 @@ IS_ALPHA=`echo $MOZILLA_VERSION | grep '[ab]'`
 `configure` 获取到相关的信息之后, 将其写入到 `js-config.h` 以及 `js-confdefs.h` 两个文件中, 使得 JSShell 能够获得版本信息. 同时, configure 也将该信息写入 Makefile 文件, 用于在 make source-package 命令式, 将版本号正确的传递给 make-source-package.sh 脚本.
 make-source-package.sh 脚本可以简单的理解为一个打包脚本, 将 SpiderMonkey 在 mozilla-central 仓库中所有依赖的文件都抽取出来, 用于单独发布.
 
+## 如何打包 SpiderMonkey 代码, 从 Mozilla 仓库中抽取出来.
+
+SpiderMonkey 提供了一个脚本`make-source-package.sh`来打包 SpiderMonkey 代码.
+在`configure`生成的`js/src/Makefile`中, 包含了打包脚本的使用方法.
+```makefile
+source-package:
+        SRCDIR=$(srcdir) \
+        DIST=$(DIST) \
+        MAKE=$(MAKE) \
+        MKDIR=$(MKDIR) \
+        TAR=$(TAR) \
+        MOZJS_MAJOR_VERSION=$(MOZJS_MAJOR_VERSION) \
+        MOZJS_MINOR_VERSION=$(MOZJS_MINOR_VERSION) \
+        MOZJS_PATCH_VERSION=$(MOZJS_PATCH_VERSION) \
+        MOZJS_ALPHA=$(MOZJS_ALPHA) \
+        $(srcdir)/make-source-package.sh
+```
+如果是在Debian/Ubuntu或Fedora这样的Linux系统下, 可以直接替换成以下命令生成:
+```
+cd $srcdir && \
+SRCDIR=$PWD \
+DIST=$YOUR_DIST_DIR_OUTSIDE_SRCDIR \
+MAKE=make \
+MKDIR=mkdir \
+TAR=tar \
+MOZJS_MAJOR_VERSION=44 \
+MOZJS_MINOR_VERSION=0 \
+MOZJS_PATCH_VERSION=1 \
+MOZJS_ALPHA=a \
+./make-source-package.sh
+```
+对于`make source-package`而言, 生成的代码包会放置于`./dist`目录下.
+注意目前`make-source-package.sh`并不能忽略掉`js/src`中的`_DBG.OBJ`和`_OPT.OBJ`
+这样的临时文件夹. 所以在打包的时候需要检查相关的目录中没有中间文件或临时文件.
 
