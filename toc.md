@@ -4,17 +4,17 @@
 简介
 ----
 
-**JavaScript
+### JavaScript
 
-    介绍JavaScript的历史, 现状(ES5), 及未来ES6, ES7的发展.
+介绍JavaScript的历史, 现状(ES5), 及未来ES6, ES7的发展.
 
-SpiderMonkey 历史
+### SpiderMonkey 历史
 
-    介绍SpiderMonkey的发展过程. 主要介绍几个JIT的演变(就关注过这个).
+介绍SpiderMonkey的发展过程. 主要介绍几个JIT的演变(就关注过这个).
 
-Firefox 架构及内存组织
+### Firefox 架构及内存组织
 
-SpiderMonkey 的架构
+### SpiderMonkey 的架构
 
 上手实践
 --------
