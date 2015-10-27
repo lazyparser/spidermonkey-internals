@@ -1,8 +1,6 @@
-目录
-====
+# 目录
 
-简介
-----
+## 简介
 
 ### JavaScript
 
@@ -16,45 +14,42 @@
 
 ### SpiderMonkey 的架构
 
-上手实践
---------
+## 上手实践
 
-下载和编译 SpiderMonkey
+### 下载和编译 SpiderMonkey
 
-执行 SpiderMonkey 回归测试
+### 执行 SpiderMonkey 回归测试
 
-运行 Benchmarks
+### 运行 Benchmarks
 
-常见的编译构建配置
+### 常见的编译构建配置
 
-调试及性能数据收集
-------------------
+## 调试及性能数据收集
 
-调试配置
+### 调试配置
 
-SPS Profiler
+### SPS Profiler
 
-IonSpew
+### IonSpew
 
-TraceLogger
+### TraceLogger
 
-InferSpew
+### InferSpew
 
-Code Coverage
+### Code Coverage
 
-深入源代码
-----------
+## 深入源代码
 
-前端
+### 前端
 
-解释器
+### 解释器
 
-Baseline JIT
+### Baseline JIT
 
-IonMonkey JIT
+### IonMonkey JIT
 
-OdinMonkey(AsmJS) JIT
+### OdinMonkey(AsmJS) JIT
 
-如何提交Patch, 贡献代码
+### 如何提交Patch, 贡献代码
 
-进一步的学习资源
+### 进一步的学习资源
