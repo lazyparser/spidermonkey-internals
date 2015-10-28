@@ -1,5 +1,5 @@
-book: preface.md toc.md FAQ.md Author.md
-	pandoc preface.md Author.md toc.md FAQ.md \
+book: preface.md toc.md FAQ.md authors.md 01.HandsOn.md
+	pandoc preface.md authors.md toc.md 01.HandsOn.md FAQ.md \
 	-o book.pdf \
 	--latex-engine=xelatex \
 	-V mainfont="WenQuanYi Micro Hei"
