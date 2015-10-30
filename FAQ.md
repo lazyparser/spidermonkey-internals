@@ -114,3 +114,62 @@ SDK/NDK 进行构建. 方法是配置 mozilla 仓库根目录下的 mozconfig �
 
 PS: 当然还有一种最为高大上的方式就是VPN了, 然而下载量很大的说...如果你壕的话可以尝试.
 
+## SpiderMonkey中的一堆的“-inl.h”头文件是什么?
+
+如果你看过 SpiderMonkey 的代码目录，你就发现经常会有名为“`ABC-inl.h`的文件与头文件
+`ABC.h`成对出现。这是 SpiderMonkey 内部组织的一个风格（不知道算不算规范），其目的是
+为了改善和提高系统内部的模块性。感兴趣的同学可以看看这个
+[Mozilla 维基页面](https://wiki.mozilla.org/JS_engine_modularization)
+或者这个
+[Bugzilla 链接](https://bugzilla.mozilla.org/show_bug.cgi?id=653057)。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
