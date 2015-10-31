@@ -4,7 +4,7 @@
 
 2013年8月份的时候 Mozilla 开发人员 Nicolas B. Pierron 在邮件列表中给出了几个
 IonMonkey 的开放项目，有兴趣的同学可以去
-[SpiderMonkey 的邮件列表0](https://groups.google.com/forum/#!msg/mozilla.dev.tech.js-engine.internals/-kLUDSAxrhA/HKjvjfYLWukJ)
+[SpiderMonkey 的邮件列表](https://groups.google.com/forum/#!msg/mozilla.dev.tech.js-engine.internals/-kLUDSAxrhA/HKjvjfYLWukJ)
 看看。
 这里列出项目的简介：
 
