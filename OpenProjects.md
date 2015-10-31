@@ -1,6 +1,6 @@
 # 可能的研究点/开放项目
 
-or Open Projects in IonMonkey
+**CAVEAT: 以下内容可能有点过时了, 有些项目已经有人做了, 具体请去Bugzilla上看看.**
 
 2013年8月份的时候 Mozilla 开发人员 Nicolas B. Pierron 在邮件列表中给出了几个
 IonMonkey 的开放项目，有兴趣的同学可以去
