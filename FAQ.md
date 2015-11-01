@@ -123,9 +123,21 @@ PS: 当然还有一种最为高大上的方式就是VPN了, 然而下载量很�
 或者这个
 [Bugzilla 链接](https://bugzilla.mozilla.org/show_bug.cgi?id=653057)。
 
+## ubi::Node 是什么, 做什么用的?
+这个可以参考 [Bug 960786 - SpiderMonkey should provide an introspection API for memory heap analysis (ubi::Node)](https://bugzilla.mozilla.org/show_bug.cgi?id=960786).
+代码可以看[这次提交](https://hg.mozilla.org/mozilla-central/rev/3d405f960e94).
 
+简单的说, 是用来方便调试工具的. 为了能够统一的呈现SpiderMonkey的内存结构.
+由于内存结构非常的复杂, 包含了很多不同类型的对象结构, 所以 Jim Blandy
+就将这个功能单独抽出变成了一个接口. 这里, `ubi::Node` 是 `ubiquitous node` 的意思:
 
+	To decouple these problems, SpiderMonkey should define a type,
+	which I'll call ubi::Node (for "ubiquitous node") that represents
+	a reference to any type of node in the heap graph: strings, JSObjects,
+	Shapes, BaseShapes, and so on; but also to non-SpiderMonkey types
+	like XPCOM objects, nsINodes, and so on.
 
+感兴趣可以看看 Bug 960786 的Reivew过程, big patch. 评论也蛮有意思, 同事关系挺好 ;-)
 
 
 
