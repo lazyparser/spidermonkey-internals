@@ -139,8 +139,13 @@ PS: 当然还有一种最为高大上的方式就是VPN了, 然而下载量很�
 
 感兴趣可以看看 Bug 960786 的Reivew过程, big patch. 评论也蛮有意思, 同事关系挺好 ;-)
 
+## 如何在Linux上用MSVC2013编译Firefox for Windows
 
+这是一个很纠结的决定。Mozilla 开发者 Ehsan Akhgari 分享了自己的方法,
+有兴趣的可以去看 [他的博客](http://ehsanakhgari.org/blog/2015-01-23/running-microsoft-visual-c-2013-under-wine-on-linux)
+以及 [github gist](https://github.com/ehsan/msvc2013onwine)。
 
+嗯，自然是基于 Wine。
 
 
 
