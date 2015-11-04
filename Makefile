@@ -1,5 +1,5 @@
-book: preface.md FAQ.md authors.md 01.HandsOn.md OpenProjects.md res.md
-	pandoc preface.md authors.md 01.HandsOn.md FAQ.md OpenProjects.md res.md \
+book: preface.md FAQ.md authors.md 00.Intro.md  01.HandsOn.md  02.GatheringData.md  03.DiveIntoCode.md OpenProjects.md res.md
+	pandoc preface.md authors.md 00.Intro.md  01.HandsOn.md  02.GatheringData.md  03.DiveIntoCode.md FAQ.md OpenProjects.md res.md \
 	-o book.pdf \
 	--toc \
 	--latex-engine=xelatex \
