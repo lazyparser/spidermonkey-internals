@@ -2,6 +2,61 @@
 
 说明: 常见的问题回答, 以及一些暂时不知道如何归类的知识点(文章)都放在这里.
 
+## 代码中的 JS_ALWAYS_INLINE 是什么意思?
+在SpiderMonkey的代码库中经常可以看到一个函数名前面定义了一个宏 `JS_ALWAYS_INLINE`，这个宏定义在 `js/src/jstypes.h` 中：
+
+```c
+#define JS_ALWAYS_INLINE MOZ_ALWAYS_INLINE
+```
+
+而 `MOZ_ALWAYS_INLINE` 定义在 `mfbt/Attributes.h` 中：
+
+```c
+/*
+ * MOZ_ALWAYS_INLINE is a macro which expands to tell the compiler that the
+ * method decorated with it must be inlined, even if the compiler thinks
+ * otherwise.  This is only a (much) stronger version of the MOZ_INLINE hint:
+ * compilers are not guaranteed to respect it (although they're much more likely
+ * to do so).
+ */
+#if defined(DEBUG)
+#  define MOZ_ALWAYS_INLINE     MOZ_INLINE
+#elif defined(_MSC_VER)
+#  define MOZ_ALWAYS_INLINE     __forceinline
+#elif defined(__GNUC__)
+#  define MOZ_ALWAYS_INLINE     __attribute__((always_inline)) MOZ_INLINE
+#else
+#  define MOZ_ALWAYS_INLINE     MOZ_INLINE
+#endif
+```
+
+而这里的 `MOZ_INLINE` 也定义在 `mfbt/Attributes.h` 中：
+
+```c
+/*
+ * MOZ_INLINE is a macro which expands to tell the compiler that the method
+ * decorated with it should be inlined.  This macro is usable from C and C++
+ * code, even though C89 does not support the |inline| keyword.  The compiler
+ * may ignore this directive if it chooses.
+ */
+#if defined(__cplusplus)
+#  define MOZ_INLINE            inline
+#elif defined(_MSC_VER)
+#  define MOZ_INLINE            __inline
+#elif defined(__GNUC__)
+#  define MOZ_INLINE            __inline__
+#else
+#  define MOZ_INLINE            inline
+#endif
+```
+
+这个定义文件放在mfbt目录下，这个目录的全称是“Mozilla Framework Based on Templates (MFBT)”，作用在\[1\]中有解释：
+
+    The Mozilla Framework Based on Templates (“mfbt”) is the central repository
+    for macros, functions, and data structures used throughout Mozilla code, 
+    including in the JavaScript engine.
+
+\[1\]: https://developer.mozilla.org/en-US/docs/Mozilla/MFBT
 
 ## SpiderMonkey 是如何确定版本号的?
 
