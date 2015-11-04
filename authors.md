@@ -1,12 +1,14 @@
 # 作者信息
 
-## Wei Wu
+Name: Wei Wu
 
 EMail: lazyparser@gmail.com
 
-Github: lazyparser
+Github: @lazyparser
 
-Twitter: lazyparser
+Twitter: @lazyparser
+
+Blog: http://lazyparser.com
 
 自我描述: Young. Simple.
 
