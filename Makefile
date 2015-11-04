@@ -1,6 +1,7 @@
-book: preface.md toc.md FAQ.md authors.md 01.HandsOn.md OpenProjects.md res.md
-	pandoc preface.md authors.md toc.md 01.HandsOn.md FAQ.md OpenProjects.md res.md \
+book: preface.md FAQ.md authors.md 01.HandsOn.md OpenProjects.md res.md
+	pandoc preface.md authors.md 01.HandsOn.md FAQ.md OpenProjects.md res.md \
 	-o book.pdf \
+	--toc \
 	--latex-engine=xelatex \
 	-V mainfont="WenQuanYi Micro Hei"
 
