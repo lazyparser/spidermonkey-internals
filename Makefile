@@ -8,3 +8,6 @@ book: preface.md FAQ.md authors.md 00.Intro.md  01.HandsOn.md  02.GatheringData.
 README: README.md
 	pandoc README.md -o README.pdf --latex-engine=xelatex -V mainfont="WenQuanYi Micro Hei"
 
+check: book
+	evince book.pdf
+
