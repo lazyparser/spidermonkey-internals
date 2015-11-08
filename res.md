@@ -19,7 +19,7 @@
 
 **Recover Instructions**
 
-[下载地址](https://github.com/nbp/slides/tree/master/RInstruction)
+[下载地址](https://nbp.github.io/slides/RInstruction)
 
 by @nbp again.
 
@@ -27,7 +27,7 @@ TODO: 没看懂.
 
 **Dynamic Taint Analysis**
 
-[下载地址](https://github.com/nbp/slides/tree/master/TaintAnalysis)
+[下载地址](https://nbp.github.io/slides/TaintAnalysis)
 
 by @nbp again. [涉及Jalangi框架的部分可以看这里](https://github.com/Berkeley-Correctness-Group/Jalangi-Berkeley). 上半年正好关注过这个团队 :-)
 
