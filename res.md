@@ -10,7 +10,12 @@
 @evilpies (Tom Schuster) 和 @nbp (Nicolas B. Pierron) 在 FOSDEM 2013 上的演讲.
 下载下来ZIP包之后解压缩, 用浏览器打开`presentation.html`就可以看了.
 
+**Javascript Optimizations** MozCamp Europe in 2012
 
+> Javascript Optimization talk presented at the MozCamp Europe in 2012. Present bad / good practice to avoid / adopt when developping Web Applications, especially for mobile.
+
+可以从作者 @nbp 的github上[下载](https://github.com/nbp/mozcamp-eu-2012-js-optim),
+虽然时间有点久, 但是里面说大部分结论都还成立.
 
 **Vyacheslav Egorov: V8 Inside Out**
 
