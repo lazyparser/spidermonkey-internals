@@ -17,6 +17,35 @@
 可以从作者 @nbp 的github上[下载](https://github.com/nbp/mozcamp-eu-2012-js-optim),
 虽然时间有点久, 但是里面说大部分结论都还成立.
 
+**Recover Instructions**
+
+[下载地址](https://github.com/nbp/slides/tree/master/RInstruction)
+
+by @nbp again.
+
+TODO: 没看懂.
+
+**Dynamic Taint Analysis**
+
+[下载地址](https://github.com/nbp/slides/tree/master/TaintAnalysis)
+
+by @nbp again. [涉及Jalangi框架的部分可以看这里](https://github.com/Berkeley-Correctness-Group/Jalangi-Berkeley). 上半年正好关注过这个团队 :-)
+
+TODO: 没看懂.
+
+污点分析记得在 JSTOOLS'12 上也有人报告过类似的动态分析工具, 当时啥都不懂, 没记住多少. 现在忘记了具体工作细节了.
+
+
+**JavaScript Updates** B2G Week Oslo 2013
+
+> JS presentation for the B2G Work Week
+
+[下载地址](https://github.com/nbp/oslo-2013)
+
+By Kannan Vijayan [:djvj], Nicolas B. Pierron [:nbp]
+
+工作总结性质, 没有多少技术细节.
+
 **Vyacheslav Egorov: V8 Inside Out**
 
 [幻灯片](http://s3.mrale.ph/webrebels2012.pdf)
