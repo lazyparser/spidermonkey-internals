@@ -2,6 +2,15 @@
 
 ## 幻灯片(Slides or PPT)
 
+**A new GVN for IonMonkey**
+
+[在线PPT](http://sunfishcode.github.io/NewGVN/#/)
+[PPT源代码](https://github.com/sunfishcode/sunfishcode.github.io/tree/master/NewGVN)
+[演讲视频](https://air.mozilla.org/a-new-gvn-for-ionmonkey/)
+by @sunfish
+
+介绍了目前 IonMonkey 中的 GVN (Global Value Numbering) 的实现.
+
 **IonMonkey: Yet Another JavaScript Just-In-Time Compiler?**
 
 [下载地址1](https://github.com/evilpie/ionmonkey-fosdem2013),
