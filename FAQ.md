@@ -202,6 +202,19 @@ PS: 当然还有一种最为高大上的方式就是VPN了, 然而下载量很�
 
 嗯，自然是基于 Wine。
 
+## 如何使用 Eclipse CDT 查看 SpiderMonkey 的源代码
+
+是的, 这是可以的. 不过由于SpiderMonkey的代码结构的复杂性, 使用了大量的宏定义和构建时环境变量生成,
+给Eclipse/CDT带来了一些麻烦, 这些麻烦目前CDT还没有修复, 如果你愿意提交patch到Eclipse社区,
+请让我知道, 好尽快用上你的patch :-)
+
+首先, 按照[mozilla的wiki上的教程](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Setting_up_CDT_to_work_on_SpiderMonkey)配置好. 这可能需要个十几分钟到半个小时的时间, 具体要看你的机器性能.
+
+然后, 在项目的属性页面中(选中项目, `Alt+Enter`), 在Build属性中, 添加一些路径.
+比如 `mfbt` 对应的路径 Eclipse 目前还找不到, 需要到对应的OBJ目录下的`dist/include/mozilla`
+下去寻找.
+其它找不到的内容, 可以参照`mfbt`的方法, 一个一个的添加进去即可.
+
 
 
 
