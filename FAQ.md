@@ -315,7 +315,16 @@ TODO: 有功能待添加。
 [MDN的介绍](https://developer.mozilla.org/en-US/docs/SpiderMonkey/SpiderMonkey_compartments),
 或者直接看[论文《Compartmental memory management in a modern web browser》](http://ssllab.org/~nsf/files/memory_management.pdf).
 
+## SpiderMonkey 内部如何表示字符串
 
+简单说使用的 String Atom 技巧. 在SpiderMonkey的代码中经常能够看到 JSAtom
+这一个数据结构。它并不是定义在 js/src/jsatom.h 中，而是在js/src/vm/String.h中。
+SpiderMonkey为了能够快速的实现字符串的复制、比较操作，使用了一系列的C++对象。具体实现在
+[String.h的注释](https://dxr.mozilla.org/mozilla-central/source/js/src/vm/String.h#44)
+中有描述.
+
+PS: [Mozilla DXR](https://dxr.mozilla.org/) 是一个比较不错的在线代码阅读网站,
+虽然可能偶尔有 bug, 日常使用的搜索的功能使用起来还不错.
 
 
 
