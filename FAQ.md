@@ -281,7 +281,21 @@ cd mozilla-central/js/src
 
 可以通过Mozilla的wiki学习如何[下载](https://developer.mozilla.org/en-US/docs/SpiderMonkey/Getting_SpiderMonkey_source_code)和[编译](https://developer.mozilla.org/en-US/docs/SpiderMonkey/Build_Documentation)源代码。
 
+## SpiderMonkey 代码注释中的常见缩写有哪些
 
+N.B.: nota bene，注意; 不是牛B :)
+
+NYI: Not Yet Implemented，尚未实现；
+
+i.e.: id est，就是；
+
+e.g.: exempli gratia，例如；
+
+XXX: 代码需要改进；(这个往往搜索引擎搜不到 >_<)
+
+FIXME: 代码需要改进，可能存在bug，需要修复；
+
+TODO: 有功能待添加。
 
 
 
