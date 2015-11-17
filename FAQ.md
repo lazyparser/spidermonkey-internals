@@ -237,9 +237,49 @@ SpiderMonkey的这两个名字空间用大小写进行区分，带来的最大�
 
 2008年左右加入到Firefox/SpiderMonkey中的Trace-based JIT引擎TraceMonkey，2011年10月份的时候被默认禁用（bug 697666），11月份的时候已经被David Anderson从Mozilla-Central中移除了（bug 698201）。感情深入阅读可以去参考[编译路漫漫的相关博客](http://hellocompiler.com/archives/407).
 
+## 如何得到SpiderMonkey引擎的字节码（bytecode）
 
+最简单的方法是用[SpiderMonkey](https://wiki.mozilla.org/JavaScript:New_to_SpiderMonkey)自带的[jsshell](https://developer.mozilla.org/en-US/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell)工具。使用debug模式编译之后，通过“-D”参数就可以获得JavaScript脚本对应的bytecode了。示例（假设你编译的目录是build-debug）：
 
+```
+cd mozilla-central/js/src
+./build-debug/js -D tests/js1_8_5/shell.js
+```
 
+得到的结果如下：
+
+>	— SCRIPT tests/js1_8_5/shell.js:1 —
+>	00000: 10 getgname “version”
+>	{“interp”: 1}
+>	00005: 10 typeof
+>	{“interp”: 1}
+>	00006: 10 string “undefined”
+>	{“interp”: 1}
+>	00011: 10 ne
+>	{“interp”: 1}
+>	00012: 10 ifeq 32 (+20)
+>	{}
+>	00017: 12 callgname “version”
+>	{“interp”: 1}
+>	00022: 12 undefined
+>	{“interp”: 1}
+>	00023: 12 notearg
+>	{“interp”: 1}
+>	00024: 12 uint16 185
+>	{“interp”: 1}
+>	00027: 12 notearg
+>	{“interp”: 1}
+>	00028: 12 call 1
+>	{“interp”: 1}
+>	00031: 12 pop
+>	{“interp”: 1}
+>	00032: 12 stop
+>	{“interp”: 1}
+>	— END SCRIPT tests/js1_8_5/shell.js:1 —
+
+注意只有debug模式才会输出，release/optimize模式的jsshell会忽略该选项。
+
+可以通过Mozilla的wiki学习如何[下载](https://developer.mozilla.org/en-US/docs/SpiderMonkey/Getting_SpiderMonkey_source_code)和[编译](https://developer.mozilla.org/en-US/docs/SpiderMonkey/Build_Documentation)源代码。
 
 
 
