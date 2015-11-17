@@ -326,7 +326,15 @@ SpiderMonkey为了能够快速的实现字符串的复制、比较操作，使�
 PS: [Mozilla DXR](https://dxr.mozilla.org/) 是一个比较不错的在线代码阅读网站,
 虽然可能偶尔有 bug, 日常使用的搜索的功能使用起来还不错.
 
+## 使用GDB调试 SpiderMonkey 有没有什么工具或者技巧?
 
+这个我也还在摸索中. 首先
+[Hacking Tips](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Hacking_Tips)
+里面提供了不少的 hacking 技巧. 需要多练习几次才能熟练(那个时候你就是debug高手了哦:P);
+其次可以使用"pretty-printer"来美化JIT中的输出, 使用方法和介绍可以看
+[JS邮件列表贴出来的介绍](https://lists.mozilla.org/pipermail/dev-tech-js-engine-internals/2012-December/000880.html);
+最后, [HelloGCC](http://hellogcc.org) 组织发起的 [《100个GDB小技巧》](https://github.com/hellogcc/100-gdb-tips)
+也值得尝试一下(利益相关: 作者是HelloGCC组织者之一 :P).
 
 
 
