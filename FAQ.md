@@ -225,13 +225,17 @@ SpiderMonkey的这两个名字空间用大小写进行区分，带来的最大�
 具体可以参考[这里](https://wiki.mozilla.org/JavaScript:SpiderMonkey:C%2B%2B_Coding_Style)
 
 
+## IonMonkey 是什么时候并入 Firefox 的?
 
+是2012年9月份进入主分支的, 当时的 Firefox 版本号是 18. 当时的模块负责人 David Anderson 写了[一篇博客](https://blog.mozilla.org/javascript/2012/09/12/ionmonkey-in-firefox-18/)介绍了IonMonkey的基本情况. 如果想看中文版, 可以看[编译路漫漫的翻译版](http://hellocompiler.com/archives/322)
 
+## Baseline Compiler 是什么时候并入 SpiderMonkey 的?
 
+是2013年4月份进入主分支的, 跟IonMonkey共享了很多的模块. 在Mozilla博客上可以找到[介绍Baseline实现的博客](http://blog.mozilla.org/javascript/2013/04/05/the-baseline-compiler-has-landed/). 如果想看中文版, 可以去看[编译路漫漫的翻译版](http://hellocompiler.com/archives/580).
 
+## TraceMonkey 是什么时候从 SpiderMonkey 中移除的
 
-
-
+2008年左右加入到Firefox/SpiderMonkey中的Trace-based JIT引擎TraceMonkey，2011年10月份的时候被默认禁用（bug 697666），11月份的时候已经被David Anderson从Mozilla-Central中移除了（bug 698201）。感情深入阅读可以去参考[编译路漫漫的相关博客](http://hellocompiler.com/archives/407).
 
 
 
