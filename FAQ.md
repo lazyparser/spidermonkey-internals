@@ -298,6 +298,22 @@ FIXME: 代码需要改进，可能存在bug，需要修复；
 TODO: 有功能待添加。
 
 
+## SpiderMonkey (Firefox) 是如何管理内存的?
+
+这个比较复杂. 在不考虑 e10s 的情况下, Firefox 浏览器内部的内存管理是基于”Compartment”的.
+
+提出这个概念的背景, 是 Firefox 既是一个单进程多线程的架构, 又支持多 Tab 页面浏览.
+这就导致了不同的网页的内容出现在同一个虚拟地址空间中. Firefox 3.5 之前的内存组织方式
+是一视同仁的散布在堆中. 这样如果 Firefox 有内存方面的漏洞, 导致恶意页面可以访问到
+敏感页面(例如银行支付页面)的内存信息, 就悲剧了. 性能上使得页面浏览的时候无法利用
+缓存访问的局部性, Cache Miss 高一点点对于软件的速度影响是很可观的(1).
+
+于是 Mozilla 把单个进程的堆, 以网页为单位分成了子堆, 在浏览器的内部实现了一套隔离和
+通信机制. 你可以认为 Mozilla 把操作系统对于进程所做的工作, 在线程的层次上做了一层实现.
+具体的实现原理和示意图可以参考
+[Andreas Gal 的博客](http://andreasgal.com/2010/10/13/compartments/),
+[MDN的介绍](https://developer.mozilla.org/en-US/docs/SpiderMonkey/SpiderMonkey_compartments),
+或者直接看[论文《Compartmental memory management in a modern web browser》](http://ssllab.org/~nsf/files/memory_management.pdf).
 
 
 
