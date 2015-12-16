@@ -202,7 +202,13 @@ PS: 当然还有一种最为高大上的方式就是VPN了, 然而下载量很�
 
 嗯，自然是基于 Wine。
 
+## SpiderMonkey 默认有多少个线程, 是怎么确定的线程数量的?
 
+SpiderMonkey 默认是多线程的, 线程数量公式是 `NCPU + M`. 其中 NCPU 是你的机器的虚拟CPU核心数,
+假设你是4核CPU, 同时开了超线程(HT), 那么 `cat /proc/cpuinfo` 看到的就是 8 个 core,
+那么这里的 NCPU == 8. M 是一个经验值, 目前被指定为 4.
+
+如果对于其具体实现感兴趣, 可以看看 `HelperThread.cpp`, 目前的实现放在这个文件中.
 
 
 
