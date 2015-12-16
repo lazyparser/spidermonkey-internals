@@ -63,7 +63,27 @@ By Kannan Vijayan [:djvj], Nicolas B. Pierron [:nbp]
 
 虽然是V8的资料, 但是里面提到的 Inlining Caching 和 Hidden Classes 技术 SpiderMonkey 中也有用到.
 
+**The Future of JavaScript: EcmaScript 6 and even more**
+
+[内容简介](https://archive.fosdem.org/2015/schedule/event/the_future_of_javascript/)
+[视频下载](http://video.fosdem.org/2015/devroom-mozilla/the_future_of_javascript__CAM_ONLY.mp4)
+
+Hannes Verschore (@h4writer) 和 Benjamin Bouvier (@bbouvier) 的报告.
+视频只拍摄到了人, 没有拍到PPT, 感觉稍微有点鸡肋.
+
 ## 技术文章(Articles or Essays)
+
+Hannes Verschore (@h4writer) 是 SpiderMonkey 的核心开发人员,
+他写的 SpiderMonkey 2014 年度总结系列, 个人觉得非常的完善,
+强烈有一些编译基础的人阅读. 即使之前没有接触过 SpiderMonkey,
+也可以读一读, 有一个直观的脉络性的感受.
+
+[Year in review: Spidermonkey in 2014 part 1](http://h4writer.com/?p=14)
+
+[Year in review: Spidermonkey in 2014 part 2](http://h4writer.com/?p=40)
+
+[Year in review: Spidermonkey in 2014 part 3](http://h4writer.com/?p=46)
+
 
 [Vyacheslav Egorov: Explaining JavaScript VMs in JavaScript - Inline Caches](http://mrale.ph/blog/2012/06/03/explaining-js-vms-in-js-inline-caches.html)
 
