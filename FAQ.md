@@ -344,7 +344,18 @@ SpiderMonkey 默认是多线程的, 线程数量公式是 `NCPU + M`. 其中 NCP
 
 如果对于其具体实现感兴趣, 可以看看 `HelperThread.cpp`, 目前的实现放在这个文件中.
 
+## 如何调整CDT中的缩进格式以符合 SpiderMonkey 的规范?
 
+Eclipse/CDT 中的代码模板默认使用Tab缩进. 可以很方便的修改成空格缩进:
+在 Eclipse 的 Preference 中选择 C/C++ -> Code Style -> Formatter,
+点击"编辑(Edit)"按钮, 在新窗口的下来菜单中选择"Space Only",
+并修改 profile 的题目(系统自带的profile不允许修改), 另存为. OK.
+
+可以参考以下链接:
+
+http://www.dotkam.com/2007/03/21/changing-tabs-to-spaces-in-eclipse/
+
+http://eclipsesource.com/blogs/2013/07/09/invisible-chaos-mastering-white-spaces-in-eclipse/
 
 
 
