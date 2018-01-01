@@ -1,13 +1,20 @@
-book: preface.md FAQ.md authors.md 00.Intro.md  01.HandsOn.md  02.GatheringData.md  03.DiveIntoCode.md OpenProjects.md res.md
-	pandoc preface.md authors.md 00.Intro.md  01.HandsOn.md  02.GatheringData.md  03.DiveIntoCode.md FAQ.md OpenProjects.md res.md \
-	-o book.pdf \
-	--toc \
-	--latex-engine=xelatex \
-	-V mainfont="WenQuanYi Micro Hei"
+# Minimal makefile for Sphinx documentation
+#
 
-README: README.md
-	pandoc README.md -o README.pdf --latex-engine=xelatex -V mainfont="WenQuanYi Micro Hei"
+# You can set these variables from the command line.
+SPHINXOPTS    =
+SPHINXBUILD   = python -msphinx
+SPHINXPROJ    = SpidermonkeyInternals
+SOURCEDIR     = .
+BUILDDIR      = _build
 
-check: book
-	evince book.pdf
+# Put it first so that "make" without argument is like "make help".
+help:
+	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+.PHONY: help Makefile
+
+# Catch-all target: route all unknown targets to Sphinx using the new
+# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
+%: Makefile
+	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
