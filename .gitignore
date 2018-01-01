@@ -63,3 +63,6 @@ _temp.*
 /out
 /drafts
 .DS_Store
+_build
+_static
+_templates
