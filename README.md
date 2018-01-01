@@ -1,4 +1,5 @@
 # SpiderMonkey Internals
+
 The internals of SpiderMonkey and IonMonkey.
 
 这本书记录了我在 SpiderMonkey 学习过程中的一些零散的经验.
@@ -14,5 +15,6 @@ The internals of SpiderMonkey and IonMonkey.
 或者直接在项目的根目录下`make`即可, 会在项目目录下生成一个`book.pdf`的文件, 包含了除本`README.md`之外的md文件.
 
 ## 开源许可证
+本项目使用CC-BY-NC-SA协议。
 本项目中缓存的第三方的PPT及文档, 使用他们自己的开源协议.
 如果协议之间存在不相容的情况, 请给我提交ISSUE, 我从这个项目中移除.
