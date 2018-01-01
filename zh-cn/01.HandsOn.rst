@@ -1,0 +1,225 @@
+上手实践
+========
+
+本章的内容均在 Ubuntu 14.04 LTS 上测试通过. 如果你运行在不同的系统上,
+并且发现跟本文不一致的地方, 欢迎在 github 上提交 ``Pull Request``
+进行补充. :-)
+
+下载和编译 SpiderMonkey
+-----------------------
+
+标准下载方式
+~~~~~~~~~~~~
+
+SpiderMonkey 的源代码作为 Firefox 代码的一部分放在 Mozilla 代码仓库中.
+Mozilla的代码仓库最“官方”的是基于\ ``Mercurial``\ 分布式代码管理工具进行管理的
+``mozilla-central``\ 仓库. 地址是
+
+::
+
+    https://hg.mozilla.org/mozilla-central/
+
+使用\ ``Mercurial``\ 工具可以将仓库下载下来. 根据网速的不同,
+可能半个小时到两个小时不等.
+
+.. code:: bash
+
+    sudo apt-get install mercurial
+    hg clone https://hg.mozilla.org/mozilla-central/ m-c
+    cd m-c
+    ./mach bootstrap # 选择 for Desktop, 会自动安装一系列依赖包.
+    ./mach build # 构建 Firefox, 大概 20 ~ 40 分钟.
+    ./mach run # 运行的是 Firefox Nightly 配置.
+    cd js/src/
+    autoconf2.13 # 必须是这个 autoconf 版本
+    mkdir _DBG.OBJ # DEBUG版本
+    cd _DBG.OBJ/ # _DBG.OBJ 和 _OPT.OBJ 目录会被git/hg自动忽略.
+    ../configure --enable-debug # 不加 --enable-debug 则默认是 optimized 版本.
+    make -j 8 # 可以根据自己的CPU核心数决定
+    ./dist/bin/js --version # 关于核心数的解释可以去看 FAQ.md
+
+使用 Git 下载 github 上的镜像仓库
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+开源仓库的一个好处是有很多选择. 如果你更加偏向于使用git,
+那么可以使用以下的命令从github上clone:
+
+.. code:: bash
+
+    sudo apt-get install git-core
+    git clone https://github.com/mozilla/gecko-dev gecko-dev
+    cd gecko-dev
+    ./mach bootstrap # 选择 for Desktop, 会自动安装一系列依赖包.
+    ./mach build # 构建 Firefox, 大概 20 ~ 40 分钟.
+    ./mach run # 运行的是 Firefox Nightly 配置.
+    cd js/src/
+    autoconf2.13 # 必须是这个 autoconf 版本
+    mkdir _DBG.OBJ # DEBUG版本
+    cd _DBG.OBJ/ # _DBG.OBJ 和 _OPT.OBJ 目录会被git/hg自动忽略.
+    ../configure --enable-debug # 不加 --enable-debug 则默认是 optimized 版本.
+    make -j 8 # 可以根据自己的CPU核心数决定
+    ./dist/bin/js --version # 关于核心数的解释可以去看 FAQ.md
+
+这里 gecko-dev 可以理解为跟 mozilla-central 一样的仓库. 至于为什么不也叫
+mozilla-central, 是有一段小八卦的, FAQ 或以后的“社区八卦”板块会有讲.
+(TODO)
+
+如果你有github账号, 那么可能git方式是你更加习惯的方式.
+需要注意的是这个仓库不接受PR,
+代码或patch的提交还是需要通过Mozilla的bugzilla进行review.
+
+其它仓库
+~~~~~~~~
+
+Mozilla维护了多个仓库, 比较常用的还有 Mozilla-inbound、Mozilla-release
+等. 具体可以参考 `Mozilla
+wiki <https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Source_Code/Mercurial>`__
+中的内容. 另外, 不同的产品开发可能也会为了自己开发需要设置不同的镜像.
+由于都是开源分布式仓库, 可以对比 SHA-1, 所以不用担心会搞混.
+
+执行 SpiderMonkey 回归测试
+--------------------------
+
+编译完成之后, 最好是使用Mozilla的回归测试集测试一下. 如果自己改动了代码,
+想要提交 patch 给mozilla, 那么回归测试是必须的. 如果修改涉及到JIT的部分,
+也需要运行JIT的回归测试. 具体如下:
+
+.. code:: bash
+
+    # 假设是在你自己的 build dir 下
+    # 回归测试比较容易, 使用 Makefile 中命令即可.
+    make check
+    # JIT的回归测试是python脚本, 需要指定jsshell的位置
+    cd ../jit-test/
+    ./jit_test.py ../_DBG.OBJ/dist/bin/js
+    # Done!
+
+一般运行会在10分钟之内结束, 如果提示 PALL ALL, 那么恭喜, 回归测试通过了
+:-)
+
+对于 jit-test 而言, 如果你想要运行单个 test case, 也是很方便的,
+先调用\ ``lib/prologue.js`` 就可以了. 例如想要运行
+``tests/bug765479.js``, 那么调用大概是这样:
+
+.. code:: bash
+
+    ../_DBG.OBJ/dist/bin/js -f lib/prologue.js -f tests/bug765479.js
+
+运行 Benchmarks
+---------------
+
+JavaScript 常用的三大测试集是 SunSpider, Kraken 和 Octane
+(原来的v8-benchmark). SpiderMonkey 代码仓库中自带了 octane 测试集,
+直接执行 ``run.js`` 就可以了.
+你可以选择从不同的测试集的官方仓库下载各个仓库,
+也可以按照本文中推荐的方法,
+下载一个仓库就能够同时下载几乎所有你可能用到的 benchmarks.
+
+跑测试之前, 首先检查自己的CPU是不是开了自动降频, 改到高性能模式:
+
+    echo performance \| sudo tee
+    /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
+从 AreWeFastYet 项目获取 Benchmarks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`AreWeFastYet <http://arewefastyet.com>`__ 是 `Hannes
+Verschore(h4writer) <https://github.com/h4writer>`__ 维护的一个网站,
+实时地检测三大开源JS引擎在多个benchmarks地跑分. 这个项目是完全开源的,
+可以通过以下地址下载:
+
+.. code:: bash
+
+    git clone https://github.com/h4writer/arewefastyet.git awfy
+
+下载下来之后可以看到这个项目已经包含了很多的JS测试集. 目前我们只关心
+octane, kk 和 ss 三个测试集, 其它的测试集在以后需要的时候介绍.
+
+::
+
+    $ls -1 benchmarks/
+    asmjs-apps
+    asmjs-ubench
+    dart
+    kraken
+    misc
+    misc-desktop
+    octane
+    shumway
+    SunSpider
+    v8-v7
+    webglsamples
+
+方便起见, 以下提到 AreWeFastYet.git 的时候都用 awfy 代替.
+
+Octane
+~~~~~~
+
+Octane 是 Google 的 V8 项目推出的测试集, 作为 V8-benchmark 的替换.
+跑分的结果是\ ``单位时间内运行次数``\ 这样的概念, 所以跑分越高越好.
+总体跑分是单个测试集的集合平均.
+
+.. code:: bash
+
+    alias smjs="your-compiled-js-path, like '../_DBG.OBJ/dist/bin/js'"
+    cd awfy/benchmarks/octane
+    smjs run.js
+
+Octane 测试集有一个很大的问题, 就是测试结果并不稳定.
+你可以尝试多运行几次, 会发现测试结果最多可以相差个10%左右.
+如果发现性能数据抖动比较厉害, 首先检查自己的CPU是不是开了自动降频,
+改到高性能模式:
+
+    echo performance \| sudo tee
+    /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
+然后可以尝试跑多次 Octane 然后自己计算几何平均值, 减少误差.
+
+SunSpider
+~~~~~~~~~
+
+SunSpider 的运行参数相对要多一些:
+
+.. code:: bash
+
+    cd awfy/benchmarks/SunSpider
+    ./sunspider --shell='your-js-path' --runs=100
+
+提供了一个 driver, 调用你的 jsshell. ``--runs=`` 参数指定了运行的次数,
+sunspider 自动计算统计值. 完整的参数如下,
+一般还可能用到\ ``--set-baseline``\ 和\ ``--args``\ 两个参数.
+
+::
+
+    Usage: $programName --shell=[path] [options]
+      --help            Show this help message
+      --set-baseline    Set baseline for future comparisons
+      --shell           Path to JavaScript shell
+      --args            Arguments to pass to JavaScript shell
+      --runs            Number of times to run tests (default: $testRuns)
+      --tests           Only run tests matching provided pattern
+      --shark           Sample execution time with the Mac OS X "Shark" performance testing tool (implies --runs=1)
+      --shark20         Like --shark, but with a 20 microsecond sampling interval
+      --shark-cache     Like --shark, but performs a L2 cache-miss sample instead of time sample
+      --suite           Select a specific benchmark suite. The default is sunspider-1.0.1
+      --ubench          Use microbenchmark suite instead of regular tests. Same as --suite=ubench
+      --v8-suite        Use the V8 benchmark suite. Same as --suite=v8-v4
+      --parse-only      Use the parse-only benchmark suite. Same as --suite=parse-only
+    EOF
+
+Kraken
+~~~~~~
+
+Kraken 基于 SunSpider 的测试脚本, 运行跟 SunSpider 一样.
+唯一的差异就是默认的 Suite 一个是 ``sunspider-1.0.1``, 另一个是
+``kraken-1.1``. 另外, kraken 的运行时间更长一些, 建议运行次数改小一点.
+
+.. code:: bash
+
+    cd awfy/benchmarks/SunSpider
+    ./sunspider --shell='your-js-path' --runs=10
+
+参数跟 SunSpider 一样.
+
+常见的编译构建配置
+------------------

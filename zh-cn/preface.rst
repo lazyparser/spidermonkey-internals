@@ -1,12 +1,16 @@
-# 前言
+前言
+====
+
 TODO
 
-## 内容介绍
+内容介绍
+--------
 
 **Chapter 简介**
 
-不动手, 纯背景知识介绍. 包括四大(浏览器背后的)JS引擎的发展过程(目前就了解SpiderMonkey,
-V8等引擎的发展过程欢迎[提交PR](https://github.com/lazyparser/spidermonkey-internals/pulls).
+不动手, 纯背景知识介绍.
+包括四大(浏览器背后的)JS引擎的发展过程(目前就了解SpiderMonkey,
+V8等引擎的发展过程欢迎\ `提交PR <https://github.com/lazyparser/spidermonkey-internals/pulls>`__.
 
 **JavaScript**
 
@@ -18,8 +22,8 @@ V8等引擎的发展过程欢迎[提交PR](https://github.com/lazyparser/spiderm
 
 **Firefox 架构及内存组织**
 
-介绍 SpiderMonkey 在 Firefox 中的位置, 与其它模块之间的交互关系. 以及 Firefox
-基于 Zone/Compartment 的内存管理机制.
+介绍 SpiderMonkey 在 Firefox 中的位置, 与其它模块之间的交互关系. 以及
+Firefox 基于 Zone/Compartment 的内存管理机制.
 
 **SpiderMonkey 的架构**
 
@@ -27,7 +31,8 @@ V8等引擎的发展过程欢迎[提交PR](https://github.com/lazyparser/spiderm
 
 **Chapter 上手实践**
 
-从零开始, 编译和构建自己的 SpiderMonkey 引擎, 并学会如何做(简单的)性能测评.
+从零开始, 编译和构建自己的 SpiderMonkey 引擎,
+并学会如何做(简单的)性能测评.
 
 **下载和编译 SpiderMonkey**
 
@@ -35,8 +40,8 @@ V8等引擎的发展过程欢迎[提交PR](https://github.com/lazyparser/spiderm
 
 **执行 SpiderMonkey 回归测试**
 
-Mozilla 提供了完善的测试集. 以后你可能会自己动手修改代码, 提交patch. 在提交之前,
-通过测试集是必要条件之一.
+Mozilla 提供了完善的测试集. 以后你可能会自己动手修改代码, 提交patch.
+在提交之前, 通过测试集是必要条件之一.
 
 **运行 Benchmarks**
 
@@ -75,4 +80,3 @@ Mozilla 提供了完善的测试集. 以后你可能会自己动手修改代码,
 **如何提交Patch, 贡献代码**
 
 **进一步的学习资源**
-

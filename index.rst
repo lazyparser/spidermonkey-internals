@@ -10,6 +10,14 @@ Welcome to Spidermonkey Internals's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   zh-cn/preface
+   zh-cn/00.Intro
+   zh-cn/01.HandsOn
+   zh-cn/02.GatheringData
+   zh-cn/03.DiveIntoCode
+   zh-cn/OpenProjects
+   zh-cn/authors
+   zh-cn/FAQ
 
 
 Indices and tables
