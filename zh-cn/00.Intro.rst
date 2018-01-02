@@ -4,15 +4,27 @@
 JavaScript
 ----------
 
-介绍JavaScript的历史, 现状(ES5), 及未来ES6, ES7的发展.
+JavaScript 是最早由 Brendan Eich 设计的网页语言。（TODO 插入维基百科链接）
+到了今天已经是无处不在。（TODO 插入几个主要的应用场景，web，nodejs，IoT）
+有关 JavaScript 的历史可以参考 https://en.wikipedia.org/wiki/JavaScript
 
-SpiderMonkey 历史
+Spidermonkey 历史
 -----------------
 
 介绍SpiderMonkey的发展过程. 主要介绍几个JIT的演变(就关注过这个).
+有关 Spidermonkey 的历史参考 https://en.wikipedia.org/wiki/SpiderMonkey
 
 Firefox 架构及内存组织
 ----------------------
 
+近期 FF57+ 开始 Firefox 的架构产生了根本性的改变。
+（TODO quantum project 之后已经完全不同了。需要重写）
+
 SpiderMonkey 的架构
 -------------------
+
+官方的资料可以参考
+https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Internals
+注意里面的文档资料可能已经过时，例如 Tracing JIT 部分在2014年之后就没有进行过维护（已经被移除了）。
+
+（TODO 这里需要添加简介，并没有现成的中文资料。）
