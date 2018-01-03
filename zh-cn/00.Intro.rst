@@ -3,28 +3,42 @@
 
 JavaScript
 ----------
+.. TODO 插入几个主要的应用场景，web，nodejs，IoT
 
-JavaScript 是最早由 Brendan Eich 设计的网页语言。（TODO 插入维基百科链接）
-到了今天已经是无处不在。（TODO 插入几个主要的应用场景，web，nodejs，IoT）
-有关 JavaScript 的历史可以参考 https://en.wikipedia.org/wiki/JavaScript
+JavaScript 是最早由 Brendan Eich 设计的网页语言。到了今天已经是无处不在。
+有关 JavaScript 的历史可以参考维基百科 [1]_。
+
+目前主流的浏览器都提供了JavaScript语言的执行环境，并且Mozilla Firefox、
+Google Chrome、 Apple Safari、Microsoft Edge 四大浏览器的JS引擎均已开源，
+为编译器和程序语言相关的技术人员及爱好者提供了丰富的学习资源。
+
+本书以 Mozilla Firefox 中使用的JS引擎 Spidermonkey 作为分析对象，
+希望能够为读者在分析程序语言解释器原理和JIT实现过程中，起到一点帮助和指引的作用。
 
 Spidermonkey 历史
 -----------------
 
 介绍SpiderMonkey的发展过程. 主要介绍几个JIT的演变(就关注过这个).
-有关 Spidermonkey 的历史参考 https://en.wikipedia.org/wiki/SpiderMonkey
+有关 Spidermonkey 的历史参考 [2]_
 
 Firefox 架构及内存组织
 ----------------------
+.. TODO quantum project 之后已经完全不同了。需要重写
 
-近期 FF57+ 开始 Firefox 的架构产生了根本性的改变。
-（TODO quantum project 之后已经完全不同了。需要重写）
+近期 FF57+ 开始 Firefox 的架构产生了根本性的改变，从单进程多线程的架构，转变为多进程架构（这点四大主流浏览器已经统一）。
+另一方面，Mozilla领导研发的Rust语言也逐步壮大，在Firefox中起到的作用越来越大，不排除未来使用Rust语言重写JS引擎的可能。
+本书以FF57+中使用的Spidermonkey为分析对象，目前依然以C++语言和JavaScript为主，在后续涉及Rust实现的部分会加以简单介绍。
 
 SpiderMonkey 的架构
 -------------------
+.. TODO 从MDN中找到相关的几个链接出来。
 
-官方的资料可以参考
-https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Internals
-注意里面的文档资料可能已经过时，例如 Tracing JIT 部分在2014年之后就没有进行过维护（已经被移除了）。
+官方的资料可以参考 [3]_。注意里面的文档资料可能已经过时，例如 Tracing JIT 部分在2014年之后就没有进行过维护（已经被移除了）。
 
-（TODO 这里需要添加简介，并没有现成的中文资料。）
+.. TODO 这里需要添加简介，并没有现成的中文资料。
+
+.. [1] https://en.wikipedia.org/wiki/JavaScript
+
+.. [2] https://en.wikipedia.org/wiki/SpiderMonkey
+
+.. [3] https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Internals
