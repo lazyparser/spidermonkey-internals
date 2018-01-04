@@ -12,31 +12,39 @@
 ~~~~~~~~~~~~
 
 SpiderMonkey 的源代码作为 Firefox 代码的一部分放在 Mozilla 代码仓库中.
-Mozilla的代码仓库最“官方”的是基于\ ``Mercurial``\ 分布式代码管理工具进行管理的
-``mozilla-central``\ 仓库. 地址是
+Mozilla的代码仓库最官方的是基于 ``Mercurial`` 分布式代码管理工具进行管理的
+``mozilla-central`` 仓库. 地址是
 
-::
+https://hg.mozilla.org/mozilla-central/
 
-    https://hg.mozilla.org/mozilla-central/
-
-使用\ ``Mercurial``\ 工具可以将仓库下载下来. 根据网速的不同,
+使用 ``Mercurial`` 工具可以将仓库下载下来. 根据网速的不同,
 可能半个小时到两个小时不等.
 
 .. code:: bash
 
+    # 如果没有安装hg工具则需要先安装
     sudo apt-get install mercurial
-    hg clone https://hg.mozilla.org/mozilla-central/ m-c
-    cd m-c
+    # 克隆仓库
+    hg clone https://hg.mozilla.org/mozilla-central/
+    cd mozilla-central
+    # mach 是 Mozilla 提供的脚本工具，非常方便。
     ./mach bootstrap # 选择 for Desktop, 会自动安装一系列依赖包.
-    ./mach build # 构建 Firefox, 大概 20 ~ 40 分钟.
-    ./mach run # 运行的是 Firefox Nightly 配置.
+    # 构建 Firefox, 大概 20 ~ 40 分钟.
+    ./mach build
+    # 运行的是 Firefox Nightly 配置.
+    ./mach run
+    # 接下来单独编译spidermonkey
     cd js/src/
-    autoconf2.13 # 必须是这个 autoconf 版本
+    # 必须是这个 autoconf 版本
+    autoconf2.13
     mkdir _DBG.OBJ # DEBUG版本
     cd _DBG.OBJ/ # _DBG.OBJ 和 _OPT.OBJ 目录会被git/hg自动忽略.
-    ../configure --enable-debug # 不加 --enable-debug 则默认是 optimized 版本.
-    make -j 8 # 可以根据自己的CPU核心数决定
-    ./dist/bin/js --version # 关于核心数的解释可以去看 FAQ.md
+    # 不加 --enable-debug 则默认是 optimized 版本.
+    ../configure --enable-debug --disable-optimize
+    # 关于核心数的解释可以去看 FAQ.md
+    make -j 4 # 可以根据自己的CPU核心数决定
+    # 编译完成
+    ./dist/bin/js --version
 
 使用 Git 下载 github 上的镜像仓库
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,26 +55,16 @@ Mozilla的代码仓库最“官方”的是基于\ ``Mercurial``\ 分布式代�
 .. code:: bash
 
     sudo apt-get install git-core
-    git clone https://github.com/mozilla/gecko-dev gecko-dev
+    git clone https://github.com/mozilla/gecko-dev
     cd gecko-dev
-    ./mach bootstrap # 选择 for Desktop, 会自动安装一系列依赖包.
-    ./mach build # 构建 Firefox, 大概 20 ~ 40 分钟.
-    ./mach run # 运行的是 Firefox Nightly 配置.
-    cd js/src/
-    autoconf2.13 # 必须是这个 autoconf 版本
-    mkdir _DBG.OBJ # DEBUG版本
-    cd _DBG.OBJ/ # _DBG.OBJ 和 _OPT.OBJ 目录会被git/hg自动忽略.
-    ../configure --enable-debug # 不加 --enable-debug 则默认是 optimized 版本.
-    make -j 8 # 可以根据自己的CPU核心数决定
-    ./dist/bin/js --version # 关于核心数的解释可以去看 FAQ.md
+    # 接下来的步骤跟上面的一致，略
 
 这里 gecko-dev 可以理解为跟 mozilla-central 一样的仓库. 至于为什么不也叫
 mozilla-central, 是有一段小八卦的, FAQ 或以后的“社区八卦”板块会有讲.
 (TODO)
 
-如果你有github账号, 那么可能git方式是你更加习惯的方式.
-需要注意的是这个仓库不接受PR,
-代码或patch的提交还是需要通过Mozilla的bugzilla进行review.
+如果你有github账号, 那么可能git方式是你更加习惯的方式。不过需要注意的是这个仓库不接受PR,
+代码或patch的提交还是需要通过Mozilla的bugzilla进行review。
 
 其它仓库
 ~~~~~~~~
@@ -94,11 +92,11 @@ wiki <https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Source_Co
     ./jit_test.py ../_DBG.OBJ/dist/bin/js
     # Done!
 
-一般运行会在10分钟之内结束, 如果提示 PALL ALL, 那么恭喜, 回归测试通过了
+一般运行会在10分钟之内结束, 如果提示 ``PASS ALL``, 那么恭喜, 回归测试通过了
 :-)
 
 对于 jit-test 而言, 如果你想要运行单个 test case, 也是很方便的,
-先调用\ ``lib/prologue.js`` 就可以了. 例如想要运行
+先调用 ``lib/prologue.js`` 就可以了. 例如想要运行
 ``tests/bug765479.js``, 那么调用大概是这样:
 
 .. code:: bash
@@ -117,8 +115,10 @@ JavaScript 常用的三大测试集是 SunSpider, Kraken 和 Octane
 
 跑测试之前, 首先检查自己的CPU是不是开了自动降频, 改到高性能模式:
 
-    echo performance \| sudo tee
-    /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+.. code:: bash
+
+    echo performance \
+    | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 
 从 AreWeFastYet 项目获取 Benchmarks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -135,7 +135,7 @@ Verschore(h4writer) <https://github.com/h4writer>`__ 维护的一个网站,
 下载下来之后可以看到这个项目已经包含了很多的JS测试集. 目前我们只关心
 octane, kk 和 ss 三个测试集, 其它的测试集在以后需要的时候介绍.
 
-::
+.. code:: bash
 
     $ls -1 benchmarks/
     asmjs-apps
@@ -156,7 +156,7 @@ Octane
 ~~~~~~
 
 Octane 是 Google 的 V8 项目推出的测试集, 作为 V8-benchmark 的替换.
-跑分的结果是\ ``单位时间内运行次数``\ 这样的概念, 所以跑分越高越好.
+跑分的结果是 ``单位时间内运行次数`` 这样的概念, 所以跑分越高越好.
 总体跑分是单个测试集的集合平均.
 
 .. code:: bash
@@ -170,8 +170,8 @@ Octane 测试集有一个很大的问题, 就是测试结果并不稳定.
 如果发现性能数据抖动比较厉害, 首先检查自己的CPU是不是开了自动降频,
 改到高性能模式:
 
-    echo performance \| sudo tee
-    /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+    echo performance \
+    | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 
 然后可以尝试跑多次 Octane 然后自己计算几何平均值, 减少误差.
 
@@ -187,7 +187,7 @@ SunSpider 的运行参数相对要多一些:
 
 提供了一个 driver, 调用你的 jsshell. ``--runs=`` 参数指定了运行的次数,
 sunspider 自动计算统计值. 完整的参数如下,
-一般还可能用到\ ``--set-baseline``\ 和\ ``--args``\ 两个参数.
+一般还可能用到 ``--set-baseline`` 和 ``--args`` 两个参数.
 
 ::
 
