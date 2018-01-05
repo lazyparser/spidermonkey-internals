@@ -8,7 +8,7 @@ FAQ
 -------------------------------------
 
 在SpiderMonkey的代码库中经常可以看到一个函数名前面定义了一个宏
-``JS_ALWAYS_INLINE``\ ，这个宏定义在 ``js/src/jstypes.h`` 中：
+``JS_ALWAYS_INLINE`` ，这个宏定义在 ``js/src/jstypes.h`` 中：
 
 .. code:: c
 
@@ -55,13 +55,13 @@ FAQ
     #  define MOZ_INLINE            inline
     #endif
 
-这个定义文件放在mfbt目录下，这个目录的全称是“Mozilla Framework Based on
-Templates (MFBT)”，作用在[1]中有解释：
+这个定义文件放在mfbt目录下，这个目录的全称是 ``Mozilla Framework Based on
+Templates (MFBT)``，作用在[1]中有解释：
 
 ::
 
     The Mozilla Framework Based on Templates (“mfbt”) is the central repository
-    for macros, functions, and data structures used throughout Mozilla code, 
+    for macros, functions, and data structures used throughout Mozilla code,
     including in the JavaScript engine.
 
 [1]: https://developer.mozilla.org/en-US/docs/Mozilla/MFBT
@@ -71,7 +71,7 @@ SpiderMonkey 是如何确定版本号的?
 
 编译好的 SpiderMonkey JSShell 是有一个版本号的. 通过运行
 ``js --version`` 可以看到 (是Mozilla的版本,
-不是\ ``1.7+``,\ ``1.8``\ 这样的JS_VERSION). 例如我的构建版本输出的是
+不是 ``1.7+``, ``1.8`` 这样的JS_VERSION). 例如我的构建版本输出的是
 ``44.0a1``. 这个版本上是Mozilla仓库统一的版本号. 这个信息并不保存在
 SpiderMonkey 源代码目录中, 而是保存于 Mozilla-Central(or gecko-dev)
 仓库的 ``config/milestone.txt`` 目录下:
@@ -96,7 +96,7 @@ SpiderMonkey 源代码目录中, 而是保存于 Mozilla-Central(or gecko-dev)
 之后, 在 SpiderMonkey 的 ``configure`` 脚本中, ``configure`` 脚本调用
 ``$srcdir/python/mozbuild/mozbuild/milestone.py`` 读取 ``milestone.txt``
 并返回版本(子)字符串. 在脚本配置过程中使用到了
-``MOZILLA_VERSION``\ 、\ ``MOZILLA_UAVERSION``\ 、
+``MOZILLA_VERSION`` 、 ``MOZILLA_UAVERSION`` 、
 ``MOZILLA_SYMBOLVERSION`` 三种版本形式:
 
 .. code:: bash
@@ -106,8 +106,8 @@ SpiderMonkey 源代码目录中, 而是保存于 Mozilla-Central(or gecko-dev)
     MOZILLA_SYMBOLVERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir --symbolversion`
 
 其中 ``MOZILLA_VERSION`` 又进一步的被分成
-``MOZJS_MAJOR_VERSION``\ 、\ ``MOZJS_MINOR_VERSION``\ 、
-``MOZJS_PATCH_VERSION``\ 、\ ``IS_ALPHA`` 四个变量:
+``MOZJS_MAJOR_VERSION`` 、 ``MOZJS_MINOR_VERSION`` 、
+``MOZJS_PATCH_VERSION`` 、 ``IS_ALPHA`` 四个变量:
 
 .. code:: bash
 
@@ -129,8 +129,8 @@ SpiderMonkey 源代码目录中, 而是保存于 Mozilla-Central(or gecko-dev)
 如何打包 SpiderMonkey 代码, 从 Mozilla 仓库中抽取出来.
 ------------------------------------------------------
 
-SpiderMonkey 提供了一个脚本\ ``make-source-package.sh``\ 来打包
-SpiderMonkey 代码. 在\ ``configure``\ 生成的\ ``js/src/Makefile``\ 中,
+SpiderMonkey 提供了一个脚本 ``make-source-package.sh`` 来打包
+SpiderMonkey 代码. 在 ``configure`` 生成的 ``js/src/Makefile`` 中,
 包含了打包脚本的使用方法.
 
 .. code:: makefile
@@ -164,9 +164,9 @@ SpiderMonkey 代码. 在\ ``configure``\ 生成的\ ``js/src/Makefile``\ 中,
     MOZJS_ALPHA=a \
     ./make-source-package.sh
 
-对于\ ``make source-package``\ 而言,
-生成的代码包会放置于\ ``./dist``\ 目录下.
-注意目前\ ``make-source-package.sh``\ 并不能忽略掉\ ``js/src``\ 中的\ ``_DBG.OBJ``\ 和\ ``_OPT.OBJ``
+对于 ``make source-package`` 而言,
+生成的代码包会放置于 ``./dist`` 目录下.
+注意目前 ``make-source-package.sh`` 并不能忽略掉 ``js/src`` 中的 ``_DBG.OBJ`` 和 ``_OPT.OBJ``
 这样的临时文件夹.
 所以在打包的时候需要检查相关的目录中没有中间文件或临时文件.
 
@@ -188,7 +188,7 @@ Mozilla 仓库中的 mach bootstrap 命令无法正确执行.
 首先你需要 google hosts 能够下载基本的SDK等; 具体可以自行上 github
 上找找; \* 运行 mach bootstrap, 在尝试 refresh android repository addons
 list-2.xml 或者 类似的文件的时候会显示读取失败. \* 手工的切换到
-HOME/.mozbuild 中的目录. 找到 Android 工具并运行, 一般是 ``\ HOME/.mozbuild/android-sdk-linux/tools/android\ ``这时就看到了熟悉的 Android SDK 管理页面. 在配置中取消 HTTPS, 强制使用 HTTP. 安装所有需要的 SDK/NDK/Tools. * 回到 mozilla-central 目录下运行 mach build. * 这个时候可能会遇到说找不到正确的 SDK 和 NDK 路径, 这是因为 bootstrap 没有正确 执行结束导致的. 解决方法是修改 mozconfig 配置文件中``–with-android-sdk``和``–with-android-ndk`选项,
+HOME/.mozbuild 中的目录. 找到 Android 工具并运行, 一般是 ``$HOME/.mozbuild/android-sdk-linux/tools/android``这时就看到了熟悉的 Android SDK 管理页面. 在配置中取消 HTTPS, 强制使用 HTTP. 安装所有需要的 SDK/NDK/Tools. * 回到 mozilla-central 目录下运行 mach build. * 这个时候可能会遇到说找不到正确的 SDK 和 NDK 路径, 这是因为 bootstrap 没有正确 执行结束导致的. 解决方法是修改 mozconfig 配置文件中``–with-android-sdk``和``–with-android-ndk`选项,
 指向具体的位置. \* 之后就可以执行 mach build & mach package 正确的编译出
 apk 了.
 
@@ -199,13 +199,13 @@ SpiderMonkey中的一堆的“-inl.h”头文件是什么?
 -------------------------------------------
 
 如果你看过 SpiderMonkey
-的代码目录，你就发现经常会有名为“\ ``ABC-inl.h``\ 的文件与头文件
-``ABC.h``\ 成对出现。这是 SpiderMonkey
+的代码目录，你就发现经常会有名为 ``ABC-inl.h`` 的文件与头文件
+``ABC.h`` 成对出现。这是 SpiderMonkey
 内部组织的一个风格（不知道算不算规范），其目的是
 为了改善和提高系统内部的模块性。感兴趣的同学可以看看这个 `Mozilla
 维基页面 <https://wiki.mozilla.org/JS_engine_modularization>`__ 或者这个
 `Bugzilla
-链接 <https://bugzilla.mozilla.org/show_bug.cgi?id=653057>`__\ 。
+链接 <https://bugzilla.mozilla.org/show_bug.cgi?id=653057>`__ 。
 
 ubi::Node 是什么, 做什么用的?
 -----------------------------
@@ -213,7 +213,7 @@ ubi::Node 是什么, 做什么用的?
 这个可以参考 `Bug 960786 - SpiderMonkey should provide an introspection
 API for memory heap analysis
 (ubi::Node) <https://bugzilla.mozilla.org/show_bug.cgi?id=960786>`__.
-代码可以看\ `这次提交 <https://hg.mozilla.org/mozilla-central/rev/3d405f960e94>`__.
+代码可以看 `这次提交 <https://hg.mozilla.org/mozilla-central/rev/3d405f960e94>`__.
 
 简单的说, 是用来方便调试工具的.
 为了能够统一的呈现SpiderMonkey的内存结构. 由于内存结构非常的复杂,
@@ -238,7 +238,7 @@ API for memory heap analysis
 这是一个很纠结的决定。Mozilla 开发者 Ehsan Akhgari 分享了自己的方法,
 有兴趣的可以去看
 `他的博客 <http://ehsanakhgari.org/blog/2015-01-23/running-microsoft-visual-c-2013-under-wine-on-linux>`__
-以及 `github gist <https://github.com/ehsan/msvc2013onwine>`__\ 。
+以及 `github gist <https://github.com/ehsan/msvc2013onwine>`__ 。
 
 嗯，自然是基于 Wine。
 
@@ -251,13 +251,13 @@ API for memory heap analysis
 好尽快用上你的patch :-)
 
 首先,
-按照\ `mozilla的wiki上的教程 <https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Setting_up_CDT_to_work_on_SpiderMonkey>`__\ 配置好.
+按照 `mozilla的wiki上的教程 <https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Setting_up_CDT_to_work_on_SpiderMonkey>`__ 配置好.
 这可能需要个十几分钟到半个小时的时间, 具体要看你的机器性能.
 
 然后, 在项目的属性页面中(选中项目, ``Alt+Enter``), 在Build属性中,
 添加一些路径. 比如 ``mfbt`` 对应的路径 Eclipse 目前还找不到,
-需要到对应的OBJ目录下的\ ``dist/include/mozilla`` 下去寻找.
-其它找不到的内容, 可以参照\ ``mfbt``\ 的方法, 一个一个的添加进去即可.
+需要到对应的OBJ目录下的 ``dist/include/mozilla`` 下去寻找.
+其它找不到的内容, 可以参照 ``mfbt`` 的方法, 一个一个的添加进去即可.
 
 JS 和 js 的 namespace 有差异?
 -----------------------------
@@ -269,24 +269,24 @@ Mozilla SpiderMonkey 中有两个不同的 namespace: JS 和 js。JS
 
 SpiderMonkey的这两个名字空间用大小写进行区分，带来的最大的不方便，就是用搜索引擎搜索的时候无法找到相关的说明。以前想找这两个名字空间的区别，搜索了半天都找不到相关的网页。
 
-具体可以参考\ `这里 <https://wiki.mozilla.org/JavaScript:SpiderMonkey:C%2B%2B_Coding_Style>`__
+具体可以参考 `这里 <https://wiki.mozilla.org/JavaScript:SpiderMonkey:C%2B%2B_Coding_Style>`__
 
 IonMonkey 是什么时候并入 Firefox 的?
 ------------------------------------
 
 是2012年9月份进入主分支的, 当时的 Firefox 版本号是 18. 当时的模块负责人
 David Anderson
-写了\ `一篇博客 <https://blog.mozilla.org/javascript/2012/09/12/ionmonkey-in-firefox-18/>`__\ 介绍了IonMonkey的基本情况.
+写了 `一篇博客 <https://blog.mozilla.org/javascript/2012/09/12/ionmonkey-in-firefox-18/>`__ 介绍了IonMonkey的基本情况.
 如果想看中文版,
-可以看\ `编译路漫漫的翻译版 <http://hellocompiler.com/archives/322>`__
+可以看 `编译路漫漫的翻译版 <http://hellocompiler.com/archives/322>`__
 
 Baseline Compiler 是什么时候并入 SpiderMonkey 的?
 -------------------------------------------------
 
 是2013年4月份进入主分支的, 跟IonMonkey共享了很多的模块.
-在Mozilla博客上可以找到\ `介绍Baseline实现的博客 <http://blog.mozilla.org/javascript/2013/04/05/the-baseline-compiler-has-landed/>`__.
+在Mozilla博客上可以找到 `介绍Baseline实现的博客 <http://blog.mozilla.org/javascript/2013/04/05/the-baseline-compiler-has-landed/>`__.
 如果想看中文版,
-可以去看\ `编译路漫漫的翻译版 <http://hellocompiler.com/archives/580>`__.
+可以去看 `编译路漫漫的翻译版 <http://hellocompiler.com/archives/580>`__.
 
 TraceMonkey 是什么时候从 SpiderMonkey 中移除的
 ----------------------------------------------
@@ -294,12 +294,12 @@ TraceMonkey 是什么时候从 SpiderMonkey 中移除的
 2008年左右加入到Firefox/SpiderMonkey中的Trace-based
 JIT引擎TraceMonkey，2011年10月份的时候被默认禁用（bug
 697666），11月份的时候已经被David Anderson从Mozilla-Central中移除了（bug
-698201）。感情深入阅读可以去参考\ `编译路漫漫的相关博客 <http://hellocompiler.com/archives/407>`__.
+698201）。感情深入阅读可以去参考 `编译路漫漫的相关博客 <http://hellocompiler.com/archives/407>`__.
 
 如何得到SpiderMonkey引擎的字节码（bytecode）
 --------------------------------------------
 
-最简单的方法是用\ `SpiderMonkey <https://wiki.mozilla.org/JavaScript:New_to_SpiderMonkey>`__\ 自带的\ `jsshell <https://developer.mozilla.org/en-US/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell>`__\ 工具。使用debug模式编译之后，通过“-D”参数就可以获得JavaScript脚本对应的bytecode了。示例（假设你编译的目录是build-debug）：
+最简单的方法是用 `SpiderMonkey <https://wiki.mozilla.org/JavaScript:New_to_SpiderMonkey>`__ 自带的 `jsshell <https://developer.mozilla.org/en-US/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell>`__ 工具。使用debug模式编译之后，通过“-D”参数就可以获得JavaScript脚本对应的bytecode了。示例（假设你编译的目录是build-debug）：
 
 ::
 
@@ -319,7 +319,7 @@ JIT引擎TraceMonkey，2011年10月份的时候被默认禁用（bug
 
 注意只有debug模式才会输出，release/optimize模式的jsshell会忽略该选项。
 
-可以通过Mozilla的wiki学习如何\ `下载 <https://developer.mozilla.org/en-US/docs/SpiderMonkey/Getting_SpiderMonkey_source_code>`__\ 和\ `编译 <https://developer.mozilla.org/en-US/docs/SpiderMonkey/Build_Documentation>`__\ 源代码。
+可以通过Mozilla的wiki学习如何 `下载 <https://developer.mozilla.org/en-US/docs/SpiderMonkey/Getting_SpiderMonkey_source_code>`__ 和 `编译 <https://developer.mozilla.org/en-US/docs/SpiderMonkey/Build_Documentation>`__ 源代码。
 
 SpiderMonkey 代码注释中的常见缩写有哪些
 ---------------------------------------
@@ -358,7 +358,7 @@ SpiderMonkey (Firefox) 是如何管理内存的?
 具体的实现原理和示意图可以参考 `Andreas Gal
 的博客 <http://andreasgal.com/2010/10/13/compartments/>`__,
 `MDN的介绍 <https://developer.mozilla.org/en-US/docs/SpiderMonkey/SpiderMonkey_compartments>`__,
-或者直接看\ `论文《Compartmental memory management in a modern web
+或者直接看 `论文《Compartmental memory management in a modern web
 browser》 <http://ssllab.org/~nsf/files/memory_management.pdf>`__.
 
 SpiderMonkey 内部如何表示字符串
